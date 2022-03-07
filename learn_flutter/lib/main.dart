@@ -1,5 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/day03/02_%E6%96%87%E6%9C%ACwidget.dart';
+import 'package:dio/dio.dart';
+import 'package:learn_flutter/service/http_request.dart';
 
 main() => runApp(const MyApp());
 
@@ -34,21 +38,9 @@ class ZYCHomeContent extends StatefulWidget {
 }
 
 class _ZYCHomeContentState extends State<ZYCHomeContent> {
-  @override
-  Widget build(BuildContext context) {
-    return const ImageWidget();
-  }
-}
-
-class ImageWidget extends StatelessWidget {
-  const ImageWidget({
-    Key? key,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Image(
-      image: AssetImage("assets/image/111.png"),
-    );
+    return Icon(Icons.people);
   }
 }
