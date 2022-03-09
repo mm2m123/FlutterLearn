@@ -19,7 +19,7 @@ List<ZYCBottomBarItem> items = [
 List<Widget> pages = [
   ZYCHomePage(),
   ZYCSubjectPage(),
-  ZYCHomePage(),
-  ZYCHomePage(),
-  ZYCHomePage()
+  ZYCSubjectPage(),
+  ZYCSubjectPage(),
+  ZYCSubjectPage(),
 ];
