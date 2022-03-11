@@ -1,9 +1,12 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/day03/02_%E6%96%87%E6%9C%ACwidget.dart';
-import 'package:dio/dio.dart';
-import 'package:learn_flutter/service/http_request.dart';
+import 'package:event_bus/event_bus.dart';
+
+final eventBus = EventBus();
+
+class UserInfo {
+  String nickname;
+  UserInfo(this.nickname);
+}
 
 main() => runApp(const MyApp());
 
@@ -38,9 +41,55 @@ class ZYCHomeContent extends StatefulWidget {
 }
 
 class _ZYCHomeContentState extends State<ZYCHomeContent> {
-
+  String _string = "123";
+  @override
+  void initState() {
+    super.initState();
+    eventBus.on<UserInfo>().listen((event) {
+      print("${event.nickname}");
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    return Icon(Icons.people);
+    return Center(
+        child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ZYCButton(),
+        SizedBox(
+          height: 50,
+        ),
+        Container(
+          width: 200,
+          height: 200,
+          color: Colors.deepPurpleAccent,
+          child: Center(child: Text(_string)),
+        )
+      ],
+    ));
+  }
+}
+
+class ZYCButton extends StatefulWidget {
+  const ZYCButton({Key? key}) : super(key: key);
+
+  @override
+  State<ZYCButton> createState() => _ZYCButtonState();
+}
+
+class _ZYCButtonState extends State<ZYCButton> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Container(
+        child: ElevatedButton(
+          onPressed: () {
+            final info = UserInfo("21331231231");
+            eventBus.fire(info);
+          },
+          child: Text("123321312"),
+        ),
+      ),
+    );
   }
 }
